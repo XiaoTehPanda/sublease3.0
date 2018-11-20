@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "499061786152",
+    "firebase_url": "https://subleased20.firebaseio.com",
+    "project_id": "subleased20",
+    "storage_bucket": "subleased20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499061786152:android:5617ed76e572d947",
+        "android_client_info": {
+          "package_name": "edu.uga.csci.xiao.subleased20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499061786152-d3itdtfejj716q1e3n30iqdnoemn1r6p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.uga.csci.xiao.subleased20",
+            "certificate_hash": "c9841ad26826b515bcb0f6e20f21218f356ccf22"
+          }
+        },
+        {
+          "client_id": "499061786152-g9q459vq8thv779m9i2m55cg1k7kq9vd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSqBuPpf5NxWMnU9MOhn8znkVEHADIw2Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499061786152-g9q459vq8thv779m9i2m55cg1k7kq9vd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

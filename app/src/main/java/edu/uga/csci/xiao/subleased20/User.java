@@ -7,11 +7,11 @@ public class User
     private String username;
     private String password;
     private String email;
-    private int    phoneNum;
+    private String phoneNum;
 
     public User(){}
 
-    public User(String username, String password, String email, int phoneNum)
+    public User(String id, String username, String password, String email, String phoneNum)
     {
         this.id = id;
         this.username = username;
@@ -52,11 +52,11 @@ public class User
         this.email = email;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(int phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 

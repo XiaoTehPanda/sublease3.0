@@ -76,7 +76,9 @@ public class LeaseDetailActivity extends AppCompatActivity {
         //database ref to firebase, as well as a firebase auth to make sure a current user is valid
         dbRef = FirebaseDatabase.getInstance().getReference("sublease");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        currentUid = firebaseUser.getUid();
+        if(firebaseUser !=null){
+            currentUid = firebaseUser.getUid();
+        }
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {

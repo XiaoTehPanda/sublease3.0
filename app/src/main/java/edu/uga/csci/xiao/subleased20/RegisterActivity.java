@@ -63,10 +63,9 @@ public class RegisterActivity extends AppCompatActivity {
                 password = putPass.getText().toString();
                 confirmation = confirmPass.getText().toString();
                 email    = putEmail.getText().toString();
-                phoneNum = putPhone.getText().toString();
                 id = dbHelper.push().getKey();
                 //makes sure important fields are not empty
-                if(TextUtils.isEmpty(password)||TextUtils.isEmpty(email)||TextUtils.isEmpty(phoneNum)) {
+                if(TextUtils.isEmpty(password)||TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Some Fields are Empty.", Toast.LENGTH_SHORT).show();
                 }
                 else {

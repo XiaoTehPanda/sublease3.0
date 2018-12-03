@@ -5,6 +5,7 @@ import android.widget.TextView;
 public class Sublease
 {
     private String uid;
+    private String leaseID;
     private String address;
     private int price;
     private int duration;
@@ -18,9 +19,10 @@ public class Sublease
 
     }
 
-    public Sublease(String uid, String address, int price, int duration, String information, String semester)
+    public Sublease(String leaseID, String uid, String address, int price, int duration, String information, String semester)
     {
         this.uid = uid;
+        this.leaseID = leaseID;
         this.address = address;
         this.price = price;
         this.duration = duration;
@@ -36,6 +38,15 @@ public class Sublease
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+
+    public String getLeaseID() {
+        return leaseID;
+    }
+
+    public void setLeaseID(String leaseID) {
+        this.leaseID = leaseID;
     }
 
     public String getAddress() {

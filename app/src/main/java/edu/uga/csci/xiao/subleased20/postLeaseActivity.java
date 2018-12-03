@@ -115,7 +115,7 @@ public class postLeaseActivity extends AppCompatActivity {
                     addInfo= additionalInfo.getText().toString();
                     if(!(TextUtils.isEmpty(subleaseName) || TextUtils.isEmpty(subleasePrice) || TextUtils.isEmpty(subleaseLength))){
                         String leaseID = dbHelper.push().getKey();
-                        Sublease sublease = new Sublease(currentFirebaseUser.getUid(), subleaseName, Integer.parseInt(subleasePrice), Integer.parseInt(subleaseLength),
+                        Sublease sublease = new Sublease(leaseID, currentFirebaseUser.getUid(), subleaseName, Integer.parseInt(subleasePrice), Integer.parseInt(subleaseLength),
                                                          addInfo, semesterChoice);
                         dbHelper.child(leaseID).setValue(sublease);
                         Intent intent = new Intent(getApplicationContext(), LoggedActivity.class);

@@ -85,12 +85,15 @@ public class LeaseListView extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(getApplicationContext(), LeaseDetailActivity.class);
                         Sublease lease = subleaseList.get(position);
+                        intent.putExtra("leaseID", lease.getLeaseID());
                         intent.putExtra("address", lease.getAddress());
                         intent.putExtra("duration", lease.getDuration());
                         intent.putExtra("information", lease.getInformation());
                         intent.putExtra("price" , lease.getPrice());
                         intent.putExtra("semester", lease.getSemester());
                         intent.putExtra("uid", lease.getUid());
+                        intent.putExtra("intent", "mypost");
+
                         startActivity(intent);
 
                     }
@@ -132,6 +135,8 @@ public class LeaseListView extends AppCompatActivity {
                             intent.putExtra("price" , lease.getPrice());
                             intent.putExtra("semester", lease.getSemester());
                             intent.putExtra("uid", lease.getUid());
+                            intent.putExtra("intent", "search");
+                            intent.putExtra("leaseID", lease.getLeaseID());
                             startActivity(intent);
 
                         }
@@ -167,6 +172,8 @@ public class LeaseListView extends AppCompatActivity {
                             intent.putExtra("information", lease.getInformation());
                             intent.putExtra("price" , lease.getPrice());
                             intent.putExtra("semester", lease.getSemester());
+                            intent.putExtra("intent", "search");
+                            intent.putExtra("leaseID", lease.getLeaseID());
                             startActivity(intent);
                         }
                     });

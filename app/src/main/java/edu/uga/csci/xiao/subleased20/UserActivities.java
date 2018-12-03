@@ -70,6 +70,7 @@ public class UserActivities extends AppCompatActivity {
         });
     }
 
+    //onstart/onstop for authentication
     @Override
     public void onStart() {
         super.onStart();

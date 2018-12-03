@@ -69,7 +69,7 @@ public class UserActivities extends AppCompatActivity {
             }
         });
     }
-    
+
     @Override
     public void onStart() {
         super.onStart();

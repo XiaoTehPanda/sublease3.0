@@ -57,11 +57,9 @@ public class UserAccount extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
                     Log.d("LoginActivity", "onAuthStateChanged:signed_in:" + user.getUid());
-                    Toast.makeText(UserAccount.this, "Successfully Signed In," + user.getEmail(), Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Log.d("LoginActivity", "onAuthStateChanged:signed_out");
-                    Toast.makeText(UserAccount.this, "Successfully Signed Out,", Toast.LENGTH_SHORT).show();
                 }
             }
         };

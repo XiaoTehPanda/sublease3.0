@@ -4,15 +4,13 @@ public class User
 {
 
     private String email;
-    private String phoneNum;
+
 
     public User(){}
 
-    public User( String email, String phoneNum)
+    public User( String email)
     {
-
         this.email = email;
-        this.phoneNum = phoneNum;
     }
 
 
@@ -24,13 +22,6 @@ public class User
         this.email = email;
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
-    }
-
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
-    }
 
 
 

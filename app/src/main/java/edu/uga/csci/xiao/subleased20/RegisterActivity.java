@@ -55,7 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
         putPass = findViewById(R.id.passInput);
         confirmPass = findViewById(R.id.confirmPass);
         putEmail= findViewById(R.id.emailInput);
-        putPhone= findViewById(R.id.phoneInput);
         //register button listener
         register.setOnClickListener(new View.OnClickListener()
         {
@@ -81,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(task.isSuccessful())
                                 {
                                     Toast.makeText(getApplicationContext(), "Registered Successfully.", Toast.LENGTH_SHORT).show();
-                                    User newUser = new User(email, phoneNum);
+                                    User newUser = new User(email);
                                     dbHelper.child(id).setValue(newUser);
                                     startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                                 }

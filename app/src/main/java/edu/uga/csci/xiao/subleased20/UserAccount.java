@@ -66,7 +66,6 @@ public class UserAccount extends AppCompatActivity {
 
         //connecting all views and buttons
         emailText = findViewById(R.id.emailText);
-        phoneText = findViewById(R.id.phoneText);
 
         newPass = findViewById(R.id.newPass);
         confirmNew = findViewById(R.id.confirmNewPass);

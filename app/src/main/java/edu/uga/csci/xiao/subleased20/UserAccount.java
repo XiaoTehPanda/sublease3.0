@@ -19,18 +19,23 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+/**
+ * The User Account Activity holds a user's information, and provides a way for a user to change their
+ * password, if they so choose.
+ */
 public class UserAccount extends AppCompatActivity {
     private static final String TAG = "User Account";
+    //Textviews
     TextView emailText;
     TextView phoneText;
     TextView newPassText;
     TextView confirmPassText;
     TextView newPass;
     TextView confirmNew;
-
+    //buttons
     Button passChange ;
     Button submitChange;
-
+    //firebase features
     FirebaseDatabase dbHelper;
     DatabaseReference dbRef;
     User dbUser;
@@ -43,8 +48,8 @@ public class UserAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
 
+        //authentication start
         mAuth = FirebaseAuth.getInstance();
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -61,6 +66,7 @@ public class UserAccount extends AppCompatActivity {
             }
         };
 
+        //connecting all views and buttons
         emailText = findViewById(R.id.emailText);
         phoneText = findViewById(R.id.phoneText);
 
@@ -73,6 +79,8 @@ public class UserAccount extends AppCompatActivity {
         submitChange = findViewById(R.id.submitChange);
 
         emailText.setText(user.getEmail());
+
+        //if a person wants to change password listener
         passChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,16 +92,19 @@ public class UserAccount extends AppCompatActivity {
             }
         });
 
+        //when a user submits new password
         submitChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (user!=null){
                     if(newPass.getText().toString().equals(confirmNew.getText().toString())) {
+                        //request for firebase to change password
                         user.updatePassword(newPass.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(getApplicationContext(),"Password Changed Successfully.", Toast.LENGTH_SHORT).show();
+                                    //Changes buttons back to invisible
                                     newPass.setVisibility(View.INVISIBLE);
                                     confirmNew.setVisibility(View.INVISIBLE);
                                     submitChange.setVisibility(View.INVISIBLE);
@@ -106,6 +117,7 @@ public class UserAccount extends AppCompatActivity {
                             }
                         });
                     }
+                    //makes sure passwords match
                     else {
                         Toast.makeText(getApplicationContext(),"Passwords Do Not Match", Toast.LENGTH_SHORT).show();
                     }

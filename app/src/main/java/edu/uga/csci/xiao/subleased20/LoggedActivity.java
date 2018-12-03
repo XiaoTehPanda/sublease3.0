@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The loggedActivity displays a homescreen is presents more options to a registered user.
+ */
 public class LoggedActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -20,13 +23,16 @@ public class LoggedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged);
+        //preparation for current user authetication.
         mAuth = FirebaseAuth.getInstance();
 
+        //connects buttons
         Button logout = (Button)findViewById(R.id.loggingOut);
         Button postLease = (Button)findViewById(R.id.loggedPosting);
         Button searchLease = (Button)findViewById(R.id.loggedSearching);
         Button account =       (Button)findViewById(R.id.loggedAccount);
 
+        //user authentication
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -42,6 +48,7 @@ public class LoggedActivity extends AppCompatActivity {
             }
         };
 
+        //button to change to a user account's activities
         account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +56,7 @@ public class LoggedActivity extends AppCompatActivity {
             }
         });
 
+        //button to logout
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,13 +65,17 @@ public class LoggedActivity extends AppCompatActivity {
             }
         });
 
+        //button to post a lease
         postLease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), postLeaseActivity.class));
+                Intent intent = new Intent(getApplicationContext(), postLeaseActivity.class);
+                intent.putExtra("token", "log");
+                startActivity(intent);
             }
         });
 
+        //button to search a lease.
         searchLease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

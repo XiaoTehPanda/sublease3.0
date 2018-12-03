@@ -24,7 +24,6 @@
         <activity android:name=".SearchLease" />
         <activity android:name=".UserAccount" />
         <activity android:name=".LeaseDetailActivity" />
-        <activity android:name=".uploadPicture" />
         <activity android:name=".UserActivities"></activity>
     </application>
 

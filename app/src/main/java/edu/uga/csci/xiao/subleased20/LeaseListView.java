@@ -26,8 +26,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The LeaseListView is a listview that incorporates all entries of a firebase query. It is used in
+ * conjunction with the list_layout xml and the LeaseList Class to display all leases that match the
+ * query.
+ */
 public class LeaseListView extends AppCompatActivity {
 
+    //firebase ref
     private FirebaseDatabase dbHelper;
     private DatabaseReference dbRef;
     private FirebaseUser currentFirebaseUser;
@@ -47,20 +53,26 @@ public class LeaseListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lease_list_view);
 
+        //ref to firebase database and current firebase user
         dbRef = FirebaseDatabase.getInstance().getReference("sublease");
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        //connect the listview and create an arraylist to hold numerous subleases.
         listViewLease = (ListView) findViewById(R.id.leaseList);
         subleaseList = new ArrayList<>();
 
+        //this intent differentiates between a person searching for a sublease and a person viewing
+        //their own subleases
         intent = getIntent();
 
         intentToken = intent.getStringExtra("intent");
 
+        //if the intent is to search for a sublease, do so
         if(intentToken.equals("search")) {
             getSearchResults();
         }
 
+        //if the intent is to view own subleases, do so.
         if(intentToken.equals("myPost")) {
             getMyResults();
         }
@@ -70,6 +82,7 @@ public class LeaseListView extends AppCompatActivity {
     }
 
     private void getMyResults() {
+        //this query call is to retrieve the current user's submissions.
         dbRef.orderByChild("uid").equalTo(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -80,6 +93,7 @@ public class LeaseListView extends AppCompatActivity {
                 }
                 LeaseList adapter = new LeaseList(LeaseListView.this, subleaseList);
                 listViewLease.setAdapter(adapter);
+                //makes the listview clickable to view listview item details.
                 listViewLease.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -92,6 +106,7 @@ public class LeaseListView extends AppCompatActivity {
                         intent.putExtra("price" , lease.getPrice());
                         intent.putExtra("semester", lease.getSemester());
                         intent.putExtra("uid", lease.getUid());
+                        intent.putExtra("contact", lease.getContactInfo());
                         intent.putExtra("intent", "mypost");
 
                         startActivity(intent);
@@ -111,9 +126,11 @@ public class LeaseListView extends AppCompatActivity {
         searchToken = intent.getStringExtra("searchToken");
         searchValue = intent.getStringExtra("value");
 
+        //if statement to check search conditions.
         if (searchToken.equals("Time of Year")) {
             searching = "duration";
             searchParam = Integer.parseInt(searchValue);
+            //query call to retrieve values equal to the time of year field (aka duration)
             dbRef.orderByChild(searching).equalTo(searchParam).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -124,6 +141,7 @@ public class LeaseListView extends AppCompatActivity {
                     }
                     LeaseList adapter = new LeaseList(LeaseListView.this, subleaseList);
                     listViewLease.setAdapter(adapter);
+                    //makes the listview clickable to view listview item details.
                     listViewLease.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -135,6 +153,7 @@ public class LeaseListView extends AppCompatActivity {
                             intent.putExtra("price" , lease.getPrice());
                             intent.putExtra("semester", lease.getSemester());
                             intent.putExtra("uid", lease.getUid());
+                            intent.putExtra("contact", lease.getContactInfo());
                             intent.putExtra("intent", "search");
                             intent.putExtra("leaseID", lease.getLeaseID());
                             startActivity(intent);
@@ -149,9 +168,11 @@ public class LeaseListView extends AppCompatActivity {
                     Log.e("onQueryChange: ", databaseError.getMessage());
                 }
             });
+            //checks if the search condition is to prices
         } else if (searchToken.equals("Max Rent Price")) {
             searching = "price";
             searchParam = Integer.parseInt(searchValue);
+            //query call to get values that at the most be equal to the specified parameter.
             dbRef.orderByChild(searching).endAt(searchParam).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -162,6 +183,7 @@ public class LeaseListView extends AppCompatActivity {
                     }
                     LeaseList adapter = new LeaseList(LeaseListView.this, subleaseList);
                     listViewLease.setAdapter(adapter);
+                    //makes the listview clickable to view listview item details.
                     listViewLease.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -174,6 +196,7 @@ public class LeaseListView extends AppCompatActivity {
                             intent.putExtra("semester", lease.getSemester());
                             intent.putExtra("intent", "search");
                             intent.putExtra("leaseID", lease.getLeaseID());
+                            intent.putExtra("contact", lease.getContactInfo());
                             startActivity(intent);
                         }
                     });

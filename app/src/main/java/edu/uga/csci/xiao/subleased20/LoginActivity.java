@@ -16,15 +16,24 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 
-
+/**
+ * Login Activity does what it does, logs a user in, provided they are valid. Also allows for a user
+ * to register
+ */
 public class LoginActivity extends AppCompatActivity {
-    DatabaseReference dbHelper, ref2;
-    String loggedIn = "false";
-    String id;
+
+    //need to have an firebase authenticator
+    private String id;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String username;
     private String password;
+
+    private TextView usernameText;
+    private TextView passwordText;
+    private Button login;
+    private Button register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        final TextView usernameText = (TextView) findViewById(R.id.userInput);
-        final TextView passwordText = (TextView) findViewById(R.id.passInput);
-        Button login = (Button) findViewById(R.id.loginButton);
-        Button register = (Button) findViewById(R.id.registerButton);
+        usernameText = findViewById(R.id.userInput);
+        passwordText = findViewById(R.id.passInput);
+        login = findViewById(R.id.loginButton);
+        register = findViewById(R.id.registerButton);
 
         //firebase auth
 
@@ -66,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 username = usernameText.getText().toString();
                 password = passwordText.getText().toString();
 
-
+                //checks to make sure fields are not empty
                 if(username.equals("") || password.equals("")) {
                     Toast.makeText(LoginActivity.this, "Email/Password Field(s) are empty.", Toast.LENGTH_SHORT).show();
                 }
@@ -77,11 +86,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-                //commented code block might return here
-
+                //commented code block that was deprecated
             }
         });
 
+        //register on click listener
         register.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -109,6 +118,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 }
 
+
+//IGNORE
   /*
                 ref2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

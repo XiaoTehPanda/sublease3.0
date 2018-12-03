@@ -2,6 +2,10 @@ package edu.uga.csci.xiao.subleased20;
 
 import android.widget.TextView;
 
+
+/**
+ * The Sublease Class. This class holds a sublease's information, along with the getters and setters
+ */
 public class Sublease
 {
     private String uid;
@@ -11,15 +15,16 @@ public class Sublease
     private int duration;
     private String information;
     private String semester;
-    private String name;
-    private String imageURL;
+    private String contactInfo;
 
+    //empty constructor
     public Sublease()
     {
 
     }
 
-    public Sublease(String leaseID, String uid, String address, int price, int duration, String information, String semester)
+    //constructor
+    public Sublease(String leaseID, String uid, String address, int price, int duration, String information, String semester, String contactInfo)
     {
         this.uid = uid;
         this.leaseID = leaseID;
@@ -28,10 +33,10 @@ public class Sublease
         this.duration = duration;
         this.information = information;
         this.semester = semester;
-        this.name = "";
-        this.imageURL="";
+        this.contactInfo = contactInfo;
     }
 
+    //GETTERS AND SETTERS (in order)
     public String getUid() {
         return uid;
     }
@@ -85,20 +90,7 @@ public class Sublease
         this.semester = semester;
     }
 
-    public String getName() {
-        return name;
+    public String getContactInfo() {
+        return contactInfo;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }
-
 }

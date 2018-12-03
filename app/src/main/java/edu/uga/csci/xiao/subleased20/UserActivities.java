@@ -12,11 +12,15 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * UserActivtites allows a user to choose to view their own sublease posts, or view their account
+ * information
+ */
 public class UserActivities extends AppCompatActivity {
-
+    //buttons
     private Button myPosts;
     private Button accountInfo;
-
+    //firebase features.
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser firebaseUser;
@@ -25,6 +29,8 @@ public class UserActivities extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_activities);
+
+        //begins user authentication.
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -42,9 +48,11 @@ public class UserActivities extends AppCompatActivity {
             }
         };
 
+        //connects views
         myPosts = findViewById(R.id.myposts);
         accountInfo = findViewById(R.id.accountinfo);
 
+        //click listener intents to search lease and makes sure queries are limited to the current user
         myPosts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +61,7 @@ public class UserActivities extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //click listener intents to user' account information activity.
         accountInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +69,7 @@ public class UserActivities extends AppCompatActivity {
             }
         });
     }
+    
     @Override
     public void onStart() {
         super.onStart();

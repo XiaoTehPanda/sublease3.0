@@ -18,9 +18,12 @@ public class IntialPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intial_page);
+
+        //For Non-Registered Users, provides two buttons, one for searching, one for login/registration.
         Button loginButton = (Button) findViewById(R.id.logAndRegister);
         Button searchLeases= (Button) findViewById(R.id.searchSublease);
 
+        //button listeners
         loginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

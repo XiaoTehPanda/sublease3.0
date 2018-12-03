@@ -21,6 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * This activity displays a listview item's details for each of the query entries the user selects.
+ * Information changes depending on the listview item the user selects.
+ */
 public class LeaseDetailActivity extends AppCompatActivity {
     private Intent intent;
     private String uid;
@@ -30,6 +34,7 @@ public class LeaseDetailActivity extends AppCompatActivity {
     private String information;
     private String semester;
     private String duration;
+    private String contactInfo;
     private String token;
     private int price;
 
@@ -38,12 +43,12 @@ public class LeaseDetailActivity extends AppCompatActivity {
     private TextView yearView;
     private TextView extraInfoView;
     private Button   deletebutton;
-    private ImageView imageView;
+    private Button   editButton;
 
+    //Variables define firebase imports
     private DatabaseReference dbRef;
     private DatabaseReference childDB;
     private FirebaseDatabase dbHelper;
-    private StorageReference storeRef;
     private FirebaseUser firebaseUser;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -53,20 +58,23 @@ public class LeaseDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lease_detail);
 
+        //intents from clicking on a list item
         intent = getIntent();
+
+        //listitem will correspond to a sublease object, with appropriate fields and data.
         leaseID = intent.getStringExtra("leaseID");
         uid = intent.getStringExtra("uid");
         token = intent.getStringExtra("intent");
         address = intent.getStringExtra("address");
         information = intent.getStringExtra("information");
         semester = intent.getStringExtra("semester");
+        contactInfo = intent.getStringExtra("contact");
         duration = Integer.toString(intent.getIntExtra("duration", 2018));
         price = intent.getIntExtra("price", 400);
 
 
-
+        //database ref to firebase, as well as a firebase auth to make sure a current user is valid
         dbRef = FirebaseDatabase.getInstance().getReference("sublease");
-        storeRef = FirebaseStorage.getInstance().getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         currentUid = firebaseUser.getUid();
         mAuth = FirebaseAuth.getInstance();
@@ -86,27 +94,32 @@ public class LeaseDetailActivity extends AppCompatActivity {
             }
         };
 
-        information = "Extra Information:\n"+ information;
+        //text stylizing for textviews
+        information = "Extra Information:\n"+ information + "\n\nFor more Details, contact: " + contactInfo ;
         semester = "For Lease During " + semester + " semester of " + duration;
 
+        //link views/buttons to their respective variables.
         addressView = findViewById(R.id.addressDetail);
         extraInfoView = findViewById(R.id.extraextra);
         yearView = findViewById(R.id.durationDetail);
         priceView = findViewById(R.id.priceDetail);
-        imageView = findViewById(R.id.leaseImage);
         deletebutton = findViewById(R.id.deleteButton);
+        editButton = findViewById(R.id.editLease);
 
+        //sets current views to match information on the listview item.
         addressView.setText(address);
         extraInfoView.setText(information);
         yearView.setText(semester);
         priceView.setText("$" + price + " per Month");
 
-
+        //if the post is indeed the user's own post, allow them to edit or delete post
         if(token.equals("mypost")){
             deletebutton.setVisibility(View.VISIBLE);
+            editButton.setVisibility(View.VISIBLE);
         }
         else{}
 
+        //delete button will make a call to the firebase database, and remove that call location's values.
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,26 +128,21 @@ public class LeaseDetailActivity extends AppCompatActivity {
 
             }
         });
-/*
-        dbRef.orderByChild(uid).equalTo(address).limitToFirst(1).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dss:dataSnapshot.getChildren())
-                {
-                    Sublease sublease = dss.getValue(Sublease.class);
-                }
 
-            }
-
+        //intents to post lease activity, and user can change information there
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LeaseDetailActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), postLeaseActivity.class);
+                intent.putExtra("token", "edit");
+                intent.putExtra("leaseID", leaseID);
+                startActivity(intent);
             }
         });
-*/
 
     }
 
+    //onStart/onStop to check for current user authentication.
     @Override
     public void onStart() {
         super.onStart();

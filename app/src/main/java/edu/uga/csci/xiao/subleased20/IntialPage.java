@@ -19,12 +19,21 @@ public class IntialPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intial_page);
         Button loginButton = (Button) findViewById(R.id.logAndRegister);
+        Button searchLeases= (Button) findViewById(R.id.searchSublease);
+
         loginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        searchLeases.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchLease.class));
             }
         });
 

@@ -4,85 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoggedActivity">
+    tools:context=".uploadPicture">
 
-    <TextView
-        android:id="@+id/appDesc"
-        android:layout_width="273dp"
+    <Button
+        android:id="@+id/submitPic"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="356dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/logged_des"
-        android:textSize="18sp"
+        android:text="Submit Picture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.686" />
 
-    <Button
-        android:id="@+id/loggedSearching"
+    <EditText
+        android:id="@+id/imageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Search For Subleases"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appDesc" />
-
-    <Button
-        android:id="@+id/loggedPosting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Post a Sublease"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggedSearching" />
-
-    <Button
-        android:id="@+id/loggedAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="280dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="My Account"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:ems="10"
+        android:hint="Picture Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/submitPic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggedPosting"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.866" />
 
-    <Button
-        android:id="@+id/loggingOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageUpload"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="logout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        app:srcCompat="?attr/colorBackgroundFloating" />
+
+    <Button
+        android:id="@+id/uploadPic"
+        android:layout_width="81dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Upload"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggedAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/imageUpload" />
 </android.support.constraint.ConstraintLayout>

@@ -1,18 +1,41 @@
 package edu.uga.csci.xiao.subleased20;
 
+import android.widget.TextView;
+
 public class Sublease
 {
-    private String id;
+    private String uid;
     private String address;
     private int price;
-    private boolean status;
+    private int duration;
+    private String information;
+    private String semester;
+    private String name;
+    private String imageURL;
 
-    public String getId() {
-        return id;
+    public Sublease()
+    {
+
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Sublease(String uid, String address, int price, int duration, String information, String semester)
+    {
+        this.uid = uid;
+        this.address = address;
+        this.price = price;
+        this.duration = duration;
+        this.information = information;
+        this.semester = semester;
+        this.name = "";
+        this.imageURL="";
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getAddress() {
@@ -31,12 +54,40 @@ public class Sublease
         this.price = price;
     }
 
-    public boolean isStatus() {
-        return status;
+    public int getDuration() { return duration; }
+
+    public void setDuration(int duration) { this.duration = duration; }
+
+    public String getInformation() {
+        return information;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setInformation(String information) {
+        this.information = information;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
 }

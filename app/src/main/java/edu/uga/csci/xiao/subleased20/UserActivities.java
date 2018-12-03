@@ -7,72 +7,60 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoggedActivity extends AppCompatActivity {
+public class UserActivities extends AppCompatActivity {
+
+    private Button myPosts;
+    private Button accountInfo;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logged);
+        setContentView(R.layout.activity_user_activities);
         mAuth = FirebaseAuth.getInstance();
-
-        Button logout = (Button)findViewById(R.id.loggingOut);
-        Button postLease = (Button)findViewById(R.id.loggedPosting);
-        Button searchLease = (Button)findViewById(R.id.loggedSearching);
-        Button account =       (Button)findViewById(R.id.loggedAccount);
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
                     Log.d("LoginActivity", "onAuthStateChanged:signed_in:" + user.getUid());
-                    Toast.makeText(LoggedActivity.this, "Successfully Signed In," + user.getEmail(), Toast.LENGTH_SHORT).show();
+
                 }
                 else {
                     Log.d("LoginActivity", "onAuthStateChanged:signed_out");
-                    Toast.makeText(LoggedActivity.this, "Successfully Signed Out,", Toast.LENGTH_SHORT).show();
+
                 }
             }
         };
 
-        account.setOnClickListener(new View.OnClickListener() {
+        myPosts = findViewById(R.id.myposts);
+        accountInfo = findViewById(R.id.accountinfo);
+
+        myPosts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), UserActivities.class));
+                Intent intent = new Intent(getApplicationContext(), LeaseListView.class);
+                intent.putExtra("intent", "myPost");
+                startActivity(intent);
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        accountInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(getApplicationContext(), IntialPage.class));
-            }
-        });
-
-        postLease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), postLeaseActivity.class));
-            }
-        });
-
-        searchLease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SearchLease.class));
+                startActivity(new Intent(getApplicationContext(), UserAccount.class));
             }
         });
     }
-
-
     @Override
     public void onStart() {
         super.onStart();

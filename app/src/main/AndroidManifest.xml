@@ -19,7 +19,13 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoggedActivity" />
-        <activity android:name=".postLeaseActivity"></activity>
+        <activity android:name=".postLeaseActivity" />
+        <activity android:name=".LeaseListView" />
+        <activity android:name=".SearchLease" />
+        <activity android:name=".UserAccount" />
+        <activity android:name=".LeaseDetailActivity" />
+        <activity android:name=".uploadPicture" />
+        <activity android:name=".UserActivities"></activity>
     </application>
 
 </manifest>

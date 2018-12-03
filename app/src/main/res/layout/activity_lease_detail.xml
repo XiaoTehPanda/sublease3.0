@@ -4,74 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoggedActivity">
+    tools:context=".LeaseDetailActivity">
 
     <TextView
-        android:id="@+id/appDesc"
-        android:layout_width="273dp"
+        android:id="@+id/addressDetail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaseImage"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/leaseImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/logged_des"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/loggedSearching"
+    <TextView
+        android:id="@+id/durationDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Search For Subleases"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appDesc" />
-
-    <Button
-        android:id="@+id/loggedPosting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Post a Sublease"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggedSearching" />
-
-    <Button
-        android:id="@+id/loggedAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="47dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="My Account"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggedPosting"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/leaseImage" />
 
-    <Button
-        android:id="@+id/loggingOut"
+    <TextView
+        android:id="@+id/priceDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -80,9 +67,46 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="logout"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaseImage"
+        app:layout_constraintVertical_bias="0.245" />
+
+    <TextView
+        android:id="@+id/extraextra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaseImage"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"
+        android:text="Delete Lease"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loggedAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/leaseImage"
+        app:layout_constraintVertical_bias="0.756" />
 </android.support.constraint.ConstraintLayout>
